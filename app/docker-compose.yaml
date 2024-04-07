@@ -1,0 +1,7 @@
+version: "3.8"
+
+services:
+  logistic:
+    image: trinhkimlong811/logistic:v2
+    ports:
+      - "5062:8080"

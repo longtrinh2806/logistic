@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Upload and API Call</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./js/cang-nhap-khau-filter.js"></script>
+    <script src="./js/upload.js"></script>
+    <script src="./js/khai-thac-cang-filter.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>File Upload and API Call</h1>
+
+      <!-- Upload container -->
+      <div class="upload-container">
+        <h2>Upload File</h2>
+        <input type="file" id="fileInput" class="file-input" />
+        <button onclick="uploadFile()" class="upload-button">Upload</button>
+      </div>
+
+      <br />
+      <hr />
+
+      <!-- Filter Cảng Nhập Khẩu container -->
+      <div class="filter-container">
+        <h2>Cảng Nhập Khẩu Filter</h2>
+        <form id="filterForm">
+          <div class="form-group">
+            <label for="shippingLine">Hãng tàu/đại lý:</label>
+            <select id="shippingLine" name="shippingLine">
+              <!-- Options will be added dynamically via JavaScript -->
+            </select>
+          </div>
+
+          <br />
+
+          <div class="form-group">
+            <label for="cargoType">Loại hàng:</label>
+            <select id="cargoType" name="cargoType">
+              <option value="">--Chọn--</option>
+              <option value="Bao">Bao</option>
+              <option value="Xá">Xá</option>
+              <option value="Cont">Cont</option>
+            </select>
+          </div>
+
+          <br />
+
+          <div class="form-group">
+            <label for="containerType">Loại cont:</label>
+            <select id="containerType" name="containerType">
+              <option value="">--Chọn--</option>
+              <option value="20FT">20FT</option>
+              <option value="40FT">40FT</option>
+              <option value="20FT, 40FT">20FT, 40FT</option>
+            </select>
+          </div>
+
+          <br />
+
+          <button type="submit">Filter</button>
+        </form>
+        <!-- Table for displaying Cảng Nhập Khẩu data -->
+        <div class="table-container">
+          <h2>Cảng Nhập Khẩu Result</h2>
+          <table id="dataTable" border="1">
+            <thead>
+              <tr>
+                <th>Tên phí</th>
+                <th>Đơn giá</th>
+                <th>Đơn vị tính</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Data will be filled dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <br />
+      <br />
+      <br />
+      <hr />
+
+      <!-- Filter Khai Thác Cảng container -->
+      <div class="filter-container">
+        <h2>Filter Khai Thác Cảng</h2>
+        <form id="portOperationFilterForm">
+          <div class="form-group">
+            <label for="portUnloading">Chọn cảng dỡ:</label>
+            <select id="portUnloading" name="portUnloading">
+              <option value="">--Chọn--</option>
+              <!-- Add other options here -->
+            </select>
+          </div>
+
+          <br />
+
+          <div class="form-group">
+            <label for="operatingUnit">Chọn đơn vị khai thác:</label>
+            <select id="operatingUnit" name="operatingUnit">
+              <option value="">--Chọn--</option>
+              <option value="TCCT">TCCT</option>
+              <!-- Add other options here -->
+            </select>
+          </div>
+
+          <br />
+
+          <div class="form-group">
+            <label for="receivingVehicle">Chọn phương tiện nhận hàng:</label>
+            <select id="receivingVehicle" name="receivingVehicle">
+              <option value="">--Chọn--</option>
+              <option value="xe cont">Xe cont</option>
+              <!-- Add other options here -->
+            </select>
+          </div>
+
+          <br />
+
+          <div class="form-group">
+            <label for="deliveryMethod">Chọn hình thức giao nhận:</label>
+            <select id="deliveryMethod" name="deliveryMethod">
+              <option value="">--Chọn--</option>
+              <option value="Sang mạn">Sang mạn</option>
+              <!-- Add other options here -->
+            </select>
+          </div>
+
+          <br />
+
+          <button type="submit">Filter</button>
+        </form>
+
+        <!-- Table for displaying Khai Thác Cảng data -->
+        <div class="table-container">
+          <h2>Khai Thác Cảng Result</h2>
+          <table id="portOperationTable" border="1">
+            <thead>
+              <tr>
+                <th>Tên phí</th>
+                <th>Đơn giá</th>
+                <th>Đơn vị tính</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Data will be filled dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="./js/fillTable.js"></script>
+    <!-- Điều chỉnh tên file nếu cần -->
+  </body>
+</html>
