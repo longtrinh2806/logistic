@@ -1,4 +1,3 @@
-// KhaiThacCangFilter.js
 $(document).ready(function () {
   // Function to populate dropdown options from API
   function populateDropdown(apiUrl, dropdownId) {
