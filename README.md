@@ -5,3 +5,6 @@ Cách chạy src:
 
 3. Truy cập vào thư mục FE, sau đó mở file index.html
 ![image](https://github.com/longtrinh2806/logistic/assets/136159911/2c12ec04-7d29-47b3-9746-50ed7acb23b1)
+
+Ví dụ về file excel đúng định dạng: 
+[Copy of DATA PHÍ LOGS - UPDATE.xlsx](https://github.com/longtrinh2806/logistic/files/14895674/Copy.of.DATA.PHI.LOGS.-.UPDATE.xlsx)
