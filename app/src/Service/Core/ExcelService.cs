@@ -3,6 +3,7 @@ using Data.Enums;
 using Data.Models;
 using Data.ViewModels;
 using Microsoft.AspNetCore.Http; // Import thư viện để sử dụng IFormFile
+using MongoDB.Driver;
 using NPOI.XSSF.UserModel;
 using System;
 using System.Collections.Generic;
@@ -123,10 +124,12 @@ namespace Services.Core
                         }
                     }
 
-                    if (cangNhapKhauList.Any())
+                    if (!CheckForDuplicates(cangNhapKhauList, khaiThacCangList))
+                    {
                         _dbContext.CangNhapKhau.InsertMany(cangNhapKhauList);
-                    if (khaiThacCangList.Any())
                         _dbContext.KhaiThacCang.InsertMany(khaiThacCangList);
+                    }
+                    else throw new Exception("Data bị trùng lặp. Vui lòng loại bỏ những dữ liệu đã tồn tại trước khi import vào CSDL");
 
                     return new ResponseModel { Succeeded = true, Message = "Import Successfully" };
                 }
@@ -136,6 +139,53 @@ namespace Services.Core
                 Console.WriteLine(ex);
                 return new ResponseModel { Succeeded = false, Message = ex.Message };
             }
+        }
+
+        private bool CheckForDuplicates(List<CangNhapKhau> cangNhapKhauList, List<KhaiThacCang> khaiThacCangList)
+        {
+            var existingCangNhapKhau = _dbContext.CangNhapKhau.Find(_ => true).ToList();
+            var existingKhaiThacCang = _dbContext.KhaiThacCang.Find(_ => true).ToList();
+
+            // Kiểm tra trùng lặp trong danh sách CangNhapKhau
+            foreach (var newCangNhapKhau in cangNhapKhauList)
+            {
+                if (existingCangNhapKhau.Any(existing => AreRowsEqualInCangNhapKhau(newCangNhapKhau, existing)))
+                    return true;
+            }
+
+            // Kiểm tra trùng lặp trong danh sách KhaiThacCang
+            foreach (var newKhaiThacCang in khaiThacCangList)
+            {
+                if (existingKhaiThacCang.Any(existing => AreRowsEqualInKhaiThacCang(newKhaiThacCang, existing)))
+                    return true;
+            }
+
+            return false;
+        }
+        private bool AreRowsEqualInCangNhapKhau(CangNhapKhau newRow, CangNhapKhau existingRow)
+        {
+            return newRow.TenPhi == existingRow.TenPhi &&
+                   newRow.MaPhi == existingRow.MaPhi &&
+                   newRow.TenVendor == existingRow.TenVendor &&
+                   newRow.HangTau == existingRow.HangTau &&
+                   newRow.LoaiHang == existingRow.LoaiHang &&
+                   newRow.LoaiCont == existingRow.LoaiCont &&
+                   newRow.DonViTinh == existingRow.DonViTinh &&
+                   newRow.DonGia == existingRow.DonGia;
+        }
+        private bool AreRowsEqualInKhaiThacCang(KhaiThacCang newRow, KhaiThacCang existingRow)
+        {
+            return newRow.TenPhi == existingRow.TenPhi &&
+                   newRow.MaPhi == existingRow.MaPhi &&
+                   newRow.TenVendor == existingRow.TenVendor &&
+                   newRow.LoaiHang == existingRow.LoaiHang &&
+                   newRow.LoaiCont == existingRow.LoaiCont &&
+                   newRow.CangXep == existingRow.CangXep &&
+                   newRow.CangDo == existingRow.CangDo &&
+                   newRow.LoaiPhuongTien == existingRow.LoaiPhuongTien &&
+                   newRow.PhuongThucGiaoNhan == existingRow.PhuongThucGiaoNhan &&
+                   newRow.DonViTinh == existingRow.DonViTinh &&
+                   newRow.DonGia == existingRow.DonGia;
         }
     }
 }

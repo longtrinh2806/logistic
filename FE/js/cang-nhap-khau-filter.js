@@ -67,32 +67,35 @@ $(document).ready(function () {
       .then(function (response) {
         console.log("API response:", response.data);
         // Handle response data
-        if (response.data.data) {
-          // Data exists, fill Cảng Nhập Khẩu table
-          fillCangNhapKhauTable(response.data.data);
-        } else {
-          // No data, display message
-          $("#dataTable")
-            .empty()
-            .append("<tr><td colspan='3'>No data</td></tr>");
-        }
+        fillCangNhapKhauTable(response);
+        globalCangNhapKhauData = response.data;
       })
       .catch(function (error) {
         console.error("API error:", error);
         // Handle API error
+        $("#dataTable")
+          .empty()
+          .append("<tr><td colspan='3'>API error</td></tr>");
       });
   });
 
   // Function to fill Cảng Nhập Khẩu table with data
-  function fillCangNhapKhauTable(data) {
+  function fillCangNhapKhauTable(response) {
+    var data = response.data.data;
     var tableBody = $("#dataTable tbody");
     tableBody.empty(); // Clear existing rows
-    data.forEach(function (item) {
-      var row = $("<tr>");
-      row.append($("<td>").text(item.tenPhi));
-      row.append($("<td>").text(item.donGia.toLocaleString())); // Format number with commas
-      row.append($("<td>").text(item.donViTinh));
-      tableBody.append(row);
-    });
+    if (data && data.length > 0) {
+      data.forEach(function (item) {
+        var row = $("<tr>");
+        row.append($("<td>").text(item.tenPhi));
+        row.append($("<td>").text(item.donGia.toLocaleString())); // Format number with commas
+        row.append($("<td>").text(item.donViTinh));
+        tableBody.append(row);
+      });
+    } else {
+      // No data, display message
+      tableBody.empty(); // Clear existing rows
+      tableBody.append("<tr><td colspan='3'>No data</td></tr>");
+    }
   }
 });

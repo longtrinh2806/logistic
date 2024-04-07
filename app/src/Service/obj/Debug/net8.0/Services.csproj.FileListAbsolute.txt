@@ -28,3 +28,4 @@ C:\Users\trinh\OneDrive\Máy tính\src\app\src\Service\obj\Debug\net8.0\Services
 C:\Users\trinh\OneDrive\Máy tính\src\app\src\Service\obj\Debug\net8.0\refint\Services.dll
 C:\Users\trinh\OneDrive\Máy tính\src\app\src\Service\obj\Debug\net8.0\Services.pdb
 C:\Users\trinh\OneDrive\Máy tính\src\app\src\Service\obj\Debug\net8.0\ref\Services.dll
+C:\Users\trinh\OneDrive\Máy tính\src\app\src\Service\obj\Debug\net8.0\Services.sourcelink.json

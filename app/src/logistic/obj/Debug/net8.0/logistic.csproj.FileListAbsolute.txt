@@ -150,3 +150,4 @@ C:\Users\trinh\OneDrive\Máy tính\src\app\src\logistic\obj\Debug\net8.0\refint\
 C:\Users\trinh\OneDrive\Máy tính\src\app\src\logistic\obj\Debug\net8.0\logistic.pdb
 C:\Users\trinh\OneDrive\Máy tính\src\app\src\logistic\obj\Debug\net8.0\logistic.genruntimeconfig.cache
 C:\Users\trinh\OneDrive\Máy tính\src\app\src\logistic\obj\Debug\net8.0\ref\logistic.dll
+C:\Users\trinh\OneDrive\Máy tính\src\app\src\logistic\obj\Debug\net8.0\logistic.sourcelink.json

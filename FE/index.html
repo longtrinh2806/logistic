@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./js/tong-hop.js"></script>
     <script src="./js/cang-nhap-khau-filter.js"></script>
     <script src="./js/upload.js"></script>
     <script src="./js/khai-thac-cang-filter.js"></script>
@@ -154,8 +155,21 @@
           </table>
         </div>
       </div>
+
+      <div id="summaryTableContainer">
+        <h2>Summary Table</h2>
+        <table id="summaryTable" border="1">
+            <thead>
+                <tr>
+                    <th>Tên Phí</th>
+                    <th>Đơn giá</th>
+                    <th>Đơn vị tính</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be filled dynamically by JavaScript -->
+            </tbody>
+        </table>
     </div>
-    <script src="./js/fillTable.js"></script>
-    <!-- Điều chỉnh tên file nếu cần -->
   </body>
 </html>

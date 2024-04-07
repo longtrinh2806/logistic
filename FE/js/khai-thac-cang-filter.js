@@ -68,6 +68,8 @@ $(document).ready(function () {
         console.log("API response:", response.data);
         // Handle response data
         fillKhaiThacCangTable(response);
+        globalKhaiThacCangData = response.data;
+        populateSummaryTable();
       })
       .catch(function (error) {
         console.error("API error:", error);
@@ -90,9 +92,8 @@ $(document).ready(function () {
       });
     } else {
       // No data, display message
-      $("#portOperationTable")
-        .empty()
-        .append("<tr><td colspan='3'>No data</td></tr>");
+      tableBody.empty(); // Clear existing rows
+      tableBody.append("<tr><td colspan='3'>No data</td></tr>");
     }
   }
 });
